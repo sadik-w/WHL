@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="header">
+  <div class="header" style="z-index: 99;">
     <Row type="flex" justify="space-between" class="code-row-bg">
 
       <!-- <Col span="3" class="border">
