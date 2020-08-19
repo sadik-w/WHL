@@ -13,7 +13,13 @@
     </Title>
     <Spdb></Spdb>
     <Content>
-      
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <button id="hide">隐藏</button>
+      <button id="show">显示</button>
     </Content>
   </div>
 </template>
@@ -25,7 +31,7 @@
   import title from '../../components/title.vue'
   import item from '../../components/item.vue'
   import spdb from '../../components/spdb.vue'
-
+  import $ from 'jquery'
   export default {
     //import引入的组件需要注入到对象中才能使用
     components: {
@@ -50,11 +56,18 @@
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-
+      console.log(window.innerHeight);
+      console.log(window.innerWidth);
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-      console.log(window.innerHeight);
+      $(document).ready(function () {
+        //
+        $("button").click(function () {
+          $("p").toggle();
+        });
+        //
+      });
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

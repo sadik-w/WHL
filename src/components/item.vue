@@ -20,29 +20,10 @@
       };
     },
     props: {
-      to: {
-        type: String
-      },
+    
     },
     //监听属性 类似于data概念
     computed: {
-      // linkUrl () {
-      //       const type = typeof this.to;
-      //       if (type !== 'string') {
-      //           return null;
-      //       }
-      //       if (this.to.includes('//')) {
-      //           /* Absolute URL, we do not need to route this */
-      //           return this.to;
-      //       }
-      //       const router = this.$router;
-      //       if (router) {
-      //           const current = this.$route;
-      //           const route = router.resolve(this.to, current, this.append);
-      //           return route ? route.href : this.to;
-      //       }
-      //       return this.to;
-      //   }
     },
     //监控data中的数据变化
     watch: {},
