@@ -325,63 +325,8 @@ var data7=[
   }
 ]
 
-var columns11=[
-  {
-      title: 'ID',
-      key: 'id'
-  },
-  {
-      title: 'Name',
-      key: 'name'
-  },
-  {
-      title: 'Amount1',
-      key: 'amount1'
-  },
-  {
-      title: 'Amount2',
-      key: 'amount2'
-  },
-  {
-      title: 'Amount3',
-      key: 'amount3'
-  }
-]
-var data11=[
-  {
-      id: '100001',
-      name: 'John Brown',
-      amount1: '123',
-      amount2: '1.2',
-      amount3: 10
-  }, {
-      id: '100002',
-      name: 'Jim Green',
-      amount1: '234',
-      amount2: '2.3',
-      amount3: 11
-  }, {
-      id: '100003',
-      name: 'Joe Black',
-      amount1: '345',
-      amount2: '3.4',
-      amount3: 12
-  }, {
-      id: '100004',
-      name: 'Jon Snow',
-      amount1: '456',
-      amount2: '4.5',
-      amount3: 13
-  }, {
-      id: '100005',
-      name: 'Jobs',
-      amount1: '678',
-      amount2: '5.6',
-      amount3: 14
-  }
-]
 export default
   {
-    columns,data,columns8,data7,columns11,data11
+    columns,data,columns8,data7
  
   }　　

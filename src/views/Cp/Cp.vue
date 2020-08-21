@@ -12,15 +12,6 @@
       <Item to="/cp8">组件八</Item>
     </Title>
     <Spdb></Spdb>
-    <Content>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-      <button id="hide">隐藏</button>
-      <button id="show">显示</button>
-    </Content>
   </div>
 </template>
 
@@ -61,13 +52,7 @@
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-      $(document).ready(function () {
-        //
-        $("button").click(function () {
-          $("p").toggle();
-        });
-        //
-      });
+    
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

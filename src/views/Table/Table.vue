@@ -60,9 +60,6 @@
         </TabPane>
         <!-- 表格三 -->
         <TabPane label="表格三" name="name3">
-          <Table :columns="columns11" :data="data11" border show-summary  height="200">
-            <!-- :summary-method="handleSummary" -->
-          </Table>
         </TabPane>
       </Tabs>
       <Page :total="total" v-model="current" :page-size="pagesize" show-total @on-change="pagechange" show-elevator />
@@ -88,8 +85,8 @@
         data: table.data,
         columns8: table.columns8,
         data7: table.data7,
-        data11:table.data11,
-        columns11:table.columns11,
+        Sdata:table.Sdata,
+        Scolumn:table.Scolumns,
         editIndex: -1,  // 当前聚焦的输入框的行数
         editName: '',  // 第一列输入框，当然聚焦的输入框的输入内容，与 data 分离避免重构的闪烁
         editAge: '',  // 第二列输入框
@@ -98,7 +95,7 @@
         loading: true,
         tabs:'name1',
         total:3,
-        pagesize:1
+        pagesize:1,
       }
     },
     //监听属性 类似于data概念
@@ -183,7 +180,7 @@
     activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
   }
 </script>
-<style lang='scss' scoped>
+<style>
 
 
 </style>

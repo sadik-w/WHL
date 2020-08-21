@@ -72,6 +72,11 @@ const routes: Array<RouteConfig> = [
     name: 'login',
     component: () => import('../views/Login/Login.vue')
   },
+  {
+    path: '/cp4',
+    name: 'cp4',
+    component: () => import('../views/Cp/Cp4.vue')
+  },
 
 ]
 
