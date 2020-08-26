@@ -77,6 +77,11 @@ const routes: Array<RouteConfig> = [
     name: 'cp4',
     component: () => import('../views/Cp/Cp4.vue')
   },
+  {
+    path: '/cp5',
+    name: 'cp5',
+    component: () => import('../views/Cp/Cp5.vue')
+  },
 
 ]
 
