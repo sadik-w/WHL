@@ -1,5 +1,4 @@
 <template>
-
   <div class="step">
     <ul class="steps">
       <span v-if="icon" v-for="(item,index) in list" :key="item+index" :class="{'active':active===index}">
