@@ -11,7 +11,7 @@
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
         </el-option>
       </el-select>
-      <wButton type="primary"></wButton>
+      <wButton type="primary" @click="checkout('select')">select</wButton>
       <wButton type="primary"></wButton>
       <wButton type="primary"></wButton>
       <wButton type="primary"></wButton>
@@ -22,11 +22,7 @@
       <wButton type="primary"></wButton>
       <wButton type="primary"></wButton>
     </div>
-    <ul>
-      <li @click="test">1</li>
-      <li>1</li>
-      <li>1</li>
-    </ul>
+
     <div style="position: relative;top:0%;left: 0%;">
       <WhlForm :formtype="formtype" :formdata="value" @receivechilddata="hanldechilddata" :state="state"></WhlForm>
     </div>
@@ -47,9 +43,21 @@
     data() {
       //这里存放数据
       return {
-        formtype: 'input',
+        formtype: 'select',
         state: 'normal',
-        value: [],
+        value: [{
+          value: 'normal',
+          label: '普通'
+        }, {
+          value: 'error',
+          label: '错误'
+        }, {
+          value: 'disabled',
+          label: '禁用'
+        }, {
+          value: 'password',
+          label: '密码框'
+        }],
         parentData: [],
         options: [{
           value: 'normal',
@@ -106,8 +114,10 @@
               console.log(this.parentData);
               break;
             }
-          case 4:
+          case 'select':
             {
+              this.parentData = data;
+              console.log(this.parentData.value);
               break;
             }
           case 5:

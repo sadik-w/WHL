@@ -85,7 +85,20 @@
     <div v-if="formtype==='input'">
       <input :class="state" :type="inputtype"></input>
     </div>
-
+    <!-- ........................................................................... -->
+    <div v-if="formtype==='select'">
+      <input class="select1" type="normal" @click="showthelist" :value="listdata">
+      <i class="el-icon-arrow-up" style="position: relative; top: 0px;right: 20px;" v-if="!listdata"
+        @click="showthelist"></i>
+      <i class="el-icon-circle-close" style="position: relative; top: 0px;right: 20px;" v-if="listdata"
+        @click="cleardata"></i>
+      </input>
+      <Card style=" width: 150px ; margin-top:10px" v-if="showlist">
+        <div style="width: 100%;" v-for="(item,index) in formdata" @click="hidethelist(index)">
+          <div class="listitem">{{item.label}}</div>
+        </div>
+      </Card>
+    </div>
     <!-- ........................................................................... -->
   </div>
 </template>
@@ -159,6 +172,8 @@
       //这里存放数据
       return {
         childData: [],
+        showlist: false,
+        listdata: '',
         value1: '',
         formCustom: {
           userid: '',
@@ -221,6 +236,18 @@
     },
     //方法集合
     methods: {
+      cleardata() {
+        this.listdata = '';
+        this.$emit('receivechilddata', '');
+      },
+      showthelist() {
+        this.showlist = !this.showlist;
+      },
+      hidethelist(index) {
+        this.showlist = false;
+        this.listdata = this.formdata[index].label;
+        this.$emit('receivechilddata', this.formdata[index]);
+      },
       // 日期选择器一传值给父组件
       handledate(data) {
         this.childData = data;
@@ -427,7 +454,66 @@
   }
 </script>
 <style>
+  .listitem {
+    position: relative;
+    width: 100%;
+    height: 30px;
+  }
+
+  .listitem:hover {
+    background-color: #add4fc;
+    box-shadow: 5px 5px 5px #cdeff0;
+  }
+
+  .select1:focus .el-icon-arrow-up {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in;
+  }
+
+  /* 下拉输入框 */
+  .select1 {
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    width: 150px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+  }
+
+  .select1:hover {
+    outline: none;
+    border-color: #409eff;
+  }
+
   /* 普通输入框 */
+  .select {
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    width: 150px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+  }
+
+  .select:hover {
+    outline: none;
+    border-color: #409eff;
+  }
+
   .normal {
     -web-kit-appearance: none;
     -moz-appearance: none;
