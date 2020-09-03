@@ -6,17 +6,15 @@
       </div>
       <div slot="titleNav">
         <!-- 顶部导航栏 -->
-        <Menuitem jump="login">登录</Menuitem>
-        <Menuitem jump="register">注册</Menuitem>
-        <Menuitem>主页</Menuitem>
-        <Menuitem>主页</Menuitem>
-        <Menuitem>主页</Menuitem>
-        <Menuitem ><i class="el-icon-switch-button" @click="exit">退出</i></Menuitem>
+        <Menuitem jump="login"><i class="el-icon-loading"></i>登录</Menuitem>
+        <Menuitem jump="register"><i class="el-icon-edit">注册</i></Menuitem>
+        <Menuitem ump="login"><i class="el-icon-switch-button" @click="exit">退出</i></Menuitem>
+        <Menuitem index="user"><i class="el-icon-user">个人中心</i></Menuitem>
       </div>
       <div slot="menu">
         <!-- 侧边导航栏 -->
-        <Menuitem index="user">主页</Menuitem>
-        <Menuitem>主页</Menuitem>
+        <Menuitem index="userinfo">用户信息</Menuitem>
+        <Menuitem index="usermanger">用户管理</Menuitem>
         <Menuitem>主页</Menuitem>
         <Menuitem>主页</Menuitem>
         <Menuitem>主页</Menuitem>
@@ -26,7 +24,7 @@
         <router-view></router-view>
       </div>
       <div slot="footer">
-        
+        <h3>whl 练习</h3>
       </div>
     </Navmenu>
   </div>

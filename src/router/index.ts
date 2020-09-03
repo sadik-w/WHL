@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: () => import('../views/Login/Login.vue'),
     meta: {
@@ -15,23 +15,12 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import('../views/Home/Home.vue'),
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login/Login.vue'),
     meta: {
-      isLogin: true//需要登录权限验证
-    },//需要登录权限验证
-    
-    children: [
-      {
-        path: '/user',
-        name: 'user',
-        component: () => import('../views/User/User.vue'),
-        meta: {
-          isLogin: true//需要登录权限验证
-        },
-      },
-    ]
+      isLogin: false//需要登录权限验证
+    },
   },
   {
     path: '/register',
@@ -41,9 +30,40 @@ const routes: Array<RouteConfig> = [
       isLogin: false
     } //需要登录权限验证
   },
-
-
-
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/Home/Home.vue'),
+    meta: {
+      isLogin: true//需要登录权限验证
+    },//需要登录权限验证
+    children: [
+      {
+        path: '/user',
+        name: 'user',
+        component: () => import('../views/User/User.vue'),
+        meta: {
+          isLogin: true//需要登录权限验证
+        },
+      },
+      {
+        path: '/userinfo',
+        name: 'userinfo',
+        component: () => import('../views/UserInfo/UserInfo.vue'),
+        meta: {
+          isLogin: true//需要登录权限验证
+        },
+      },
+      {
+        path: '/usermanger',
+        name: 'usermanger',
+        component: () => import('../views/UserManger/UserManger.vue'),
+        meta: {
+          isLogin: true//需要登录权限验证
+        },
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({

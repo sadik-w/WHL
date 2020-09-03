@@ -80,9 +80,9 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 36px;
     text-decoration: none;
-    margin: 0px 20px 0px 20px;
+    margin:0;
   }
 
   .horizontalNav li a:hover {

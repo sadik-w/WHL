@@ -89,7 +89,7 @@
     left: 3%;
     top: 10%;
     float: left;
-    background-color: rgb(117, 131, 136);
+    /* background-color: rgb(117, 131, 136); */
   }
 
   .titleNav {
@@ -97,7 +97,7 @@
     position: absolute;
     float: left;
     left: 40%;
-    top: 10%;
+    top: 5%;
     /* background-color: rgb(117, 131, 136); */
   }
 
@@ -150,6 +150,6 @@
     background-color: #B3C0D1;
     clear: both;
     text-align: center;
-    height: 60px;
+    min-height: 30px;
   }
 </style>

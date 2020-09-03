@@ -53,7 +53,7 @@
       <div class="register-wrapper">
         <div id="register">
           <p class="title">注册</p>
-          <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm1" label-width="0" class="demo-ruleForm">
+          <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="0" class="demo-ruleForm">
             <el-form-item prop="tel">
               <el-input v-model="ruleForm2.tel" auto-complete="off" placeholder="请输入手机号"></el-input>
             </el-form-item>
@@ -74,7 +74,7 @@
               <el-input type="text" v-model="ruleForm2.id" auto-complete="off" placeholder="输入身份证号码"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm1')" style="width:100%;">注册</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm2')" style="width:100%;">注册</el-button>
               <el-button @click="clearform" style="width:50%;">清空</el-button>
               <a class="login" @click="gotoLogin">已有账号？立即登录</a>
             </el-form-item>
@@ -95,7 +95,7 @@
               <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="输入密码"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm2('ruleForm2')" style="width:100%;">登录</el-button>
+              <el-button type="primary" @click="submitForm2('ruleForm1')" style="width:100%;">登录</el-button>
               <a class="login" @click="gotoRegister">没有账号？立即注册</a>
             </el-form-item>
           </el-form>
@@ -734,6 +734,7 @@
 
   #login {
     width: 300px;
+    min-height: 500px;
     /* margin: 60px auto; */
     background-image: url('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2444703665,363140675&fm=26&gp=0.jpg');
     background-size: 100% 100%;
@@ -742,6 +743,7 @@
     border-radius: 10px;
     position: relative;
     z-index: 9;
+    opacity:0.6;
   }
 
   .title {
