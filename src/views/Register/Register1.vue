@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="pagelogin">
-    <div class="loginform">
+  <div class="pageregister">
+    <div class="login">
       <Myform :formtype="formtype" :formdata="value" @receivechilddata="hanldechilddata" :state="state"></Myform>
     </div>
   </div>
@@ -20,7 +20,7 @@
     data() {
       //这里存放数据
       return {
-        formtype: 'login2',
+        formtype: 'rgform2',
         state: 'normal',
         value: [],
       };
@@ -81,7 +81,7 @@
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-      alert("请先登录！！")
+
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
@@ -97,7 +97,7 @@
   }
 </script>
 <style>
-  .pagelogin {
+  .pageregister {
     height: 1000px;
     background-color: cadetblue;
     background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594293335448&di=fa0ba3a0727154d784f398ca650efc06&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20170802%2Ffee4f199355c4255976290e2ec5d796f.jpeg');

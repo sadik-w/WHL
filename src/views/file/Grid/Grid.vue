@@ -8,7 +8,7 @@
       </i-circle>
       <div style="text-align:center;">
         <h1>颜色选择器</h1>
-        <ColorPicker v-model="color1" />
+        <ColorPicker v-model="color" />
       </div>
       <h1>Grid练习</h1>
       <Row>
@@ -34,6 +34,13 @@
         <Col span="4" style="background-color: chartreuse;">col-4</Col>
         <Col span="4" style="background-color: coral;">col-4</Col>
       </Row>
+      <br>
+      <div style="background-color: rgb(172, 224, 231); width: 120px; float: right;height: 800px; padding: 0;">
+        <div style="margin:30px auto; width: 20px; background-color: rgb(172, 231, 202);">1</div>
+        <div style="margin:30px auto; width: 20px; background-color: rgb(177, 231, 172);">2</div>
+        <div style="margin:30px auto; width: 20px; background-color: rgb(231, 172, 228);">3</div>
+        <div style="margin:30px auto; width: 20px; background-color: rgb(231, 172, 172);">4</div>
+      </div>
     </Content>
   </div>
 </template>
@@ -59,7 +66,7 @@
     computed: {
       color() {
         let color = '#2db7f5';
-        if (this.percent == 100) {
+        if (this.percent == 40) {
           color = '#5cb85c';
         }
         return color;

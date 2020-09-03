@@ -1,17 +1,18 @@
 <template>
-  <div>
+  <div style="text-align: center;">
+    <!-- 日期选择器1 -->
     <div class="datepicker1" v-if="formtype==='datepicker1'">
       <DatePicker :value="formdata" size="large" @on-change="handledate" format="yyyy/MM/dd" type="daterange"
         placement="bottom-end" placeholder="Select date" style="width: 300px">
       </DatePicker>
     </div>
-    <!-- .......................................................................... -->
+    <!-- 日期选择器2 -->
     <div class="datepicker2" v-if="formtype==='datepicker2'">
       <el-date-picker v-model="value1" size="large" @change="handledate2" type="daterange" range-separator="至"
         start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy/MM/dd">
       </el-date-picker>
     </div>
-    <!-- ........................................................................... -->
+    <!-- 注册表单1 -->
     <div class="rgform1" v-if="formtype==='rgform1'">
       <Card style="width:520px;background-image: url('https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1676039924,1631635399&fm=26&gp=0.jpg');
       background-size:100% 100%;
@@ -47,12 +48,12 @@
         </Form>
       </Card>
     </div>
-    <!-- ........................................................................... -->
+    <!-- 注册表单2 -->
     <div class="rgform2" v-if="formtype==='rgform2'">
       <div class="register-wrapper">
         <div id="register">
           <p class="title">注册</p>
-          <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="0" class="demo-ruleForm">
+          <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm1" label-width="0" class="demo-ruleForm">
             <el-form-item prop="tel">
               <el-input v-model="ruleForm2.tel" auto-complete="off" placeholder="请输入手机号"></el-input>
             </el-form-item>
@@ -73,31 +74,54 @@
               <el-input type="text" v-model="ruleForm2.id" auto-complete="off" placeholder="输入身份证号码"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm2')" style="width:100%;">注册</el-button>
+              <el-button type="primary" @click="submitForm('ruleForm1')" style="width:100%;">注册</el-button>
               <el-button @click="clearform" style="width:50%;">清空</el-button>
-              <p class="login" @click="gotoLogin">已有账号？立即登录</p>
+              <a class="login" @click="gotoLogin">已有账号？立即登录</a>
             </el-form-item>
           </el-form>
         </div>
       </div>
     </div>
-    <!-- ........................................................................... -->
+    <!-- 登录表单 -->
+    <div class="login2" v-if="formtype==='login2'">
+      <div class="register-wrapper">
+        <div id="login">
+          <p class="title">登录</p>
+          <el-form :model="ruleForm1" status-icon ref="ruleForm1" label-width="0" class="demo-ruleForm">
+            <el-form-item prop="name">
+              <el-input type="text" v-model="ruleForm2.name" auto-complete="off" placeholder="输入用户名"></el-input>
+            </el-form-item>
+            <el-form-item prop="pass">
+              <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="输入密码"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm2('ruleForm2')" style="width:100%;">登录</el-button>
+              <a class="login" @click="gotoRegister">没有账号？立即注册</a>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </div>
+    <!-- 输入框 -->
     <div v-if="formtype==='input'">
       <input :class="state" :type="inputtype"></input>
     </div>
-    <!-- ........................................................................... -->
+    <!-- 下拉菜单 -->
     <div v-if="formtype==='select'">
       <input class="select1" type="normal" @click="showthelist" :value="listdata">
-      <i class="el-icon-arrow-up" style="position: relative; top: 0px;right: 20px;" v-if="!listdata"
+      <i class="el-icon-arrow-down" style="position: relative; top: 0px;right: 20px;" v-if="!listdata"
         @click="showthelist"></i>
       <i class="el-icon-circle-close" style="position: relative; top: 0px;right: 20px;" v-if="listdata"
         @click="cleardata"></i>
       </input>
-      <Card style=" width: 150px ; margin-top:10px" v-if="showlist">
-        <div style="width: 100%;" v-for="(item,index) in formdata" @click="hidethelist(index)">
-          <div class="listitem">{{item.label}}</div>
-        </div>
-      </Card>
+      <transition mode="out-in" enter-active-class="animated slideInDown" leave-active-class="animated bounceOutUp">
+        <Card style=" width: 100% ; margin-top:10px ;padding:0;" v-if="showlist">
+          <div v-for="(item,index) in formdata" @click="hidethelist(index)">
+            <div style="width: 120%; margin:10px,0px,10px,0px; padding:0; right: 10%;" class="listitem">{{item.label}}
+            </div>
+          </div>
+        </Card>
+      </transition>
     </div>
     <!-- ........................................................................... -->
   </div>
@@ -173,7 +197,7 @@
       return {
         childData: [],
         showlist: false,
-        listdata: '',
+        listdata: '请选择',
         value1: '',
         formCustom: {
           userid: '',
@@ -191,6 +215,10 @@
           userid: false,
           emailck: false,
           ps: false
+        },
+        ruleForm1: {
+          name: '',
+          paseeword: ''
         },
         ruleForm2: {
           pass: "",
@@ -412,6 +440,9 @@
               alert('submit!');
               this.$emit('receivechilddata', this.info);
               this.clearform();
+              this.$router.replace({
+                path: "/home"
+              });
             })
           } else {
             alert('error submit!!');
@@ -419,10 +450,24 @@
           }
         });
       },
+      // 登录验证
+      submitForm2(formName) {
+        this.$router.replace({
+          path: "home"
+        });
+        alert("login success");
+        sessionStorage.setItem("isLogin", 'true');
+      },
       // <!--进入登录页-->
       gotoLogin() {
-        this.$router.push({
+        this.$router.replace({
           path: "/login"
+        });
+      },
+      // 进入注册页面
+      gotoRegister() {
+        this.$router.push({
+          path: "/register"
         });
       },
       // 验证手机号
@@ -454,10 +499,17 @@
   }
 </script>
 <style>
+  .el-icon-circle-close:hover {
+    color: #409eff;
+    cursor: pointer;
+  }
+
   .listitem {
     position: relative;
-    width: 100%;
+    width: 120%;
+    left: -10px+32009;
     height: 30px;
+    cursor: pointer;
   }
 
   .listitem:hover {
@@ -465,10 +517,11 @@
     box-shadow: 5px 5px 5px #cdeff0;
   }
 
-  .select1:focus .el-icon-arrow-up {
+  .select1:hover .el-icon-arrow-down {
     transform: rotate(180deg);
-    transition: transform 0.5s ease-in;
+    transition: transform 0.5s;
   }
+
 
   /* 下拉输入框 */
   .select1 {
@@ -485,6 +538,8 @@
     line-height: 40px;
     outline: none;
     padding: 0 15px;
+    transition: .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
+
   }
 
   .select1:hover {
@@ -507,6 +562,7 @@
     line-height: 40px;
     outline: none;
     padding: 0 15px;
+    transition: .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
   }
 
   .select:hover {
@@ -618,7 +674,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    margin: 60px auto;
+    /* margin: 60px auto; */
   }
 
   .datepicker2 {
@@ -627,7 +683,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    margin: 60px auto;
+    /* margin: 60px auto; */
   }
 
   .rgform1 {
@@ -636,7 +692,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    margin: 60px auto;
+    /* margin: 60px auto; */
   }
 
   .loading-wrapper {
@@ -666,7 +722,19 @@
 
   #register {
     width: 400px;
-    margin: 60px auto;
+    /* margin: 60px auto; */
+    background-image: url('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2444703665,363140675&fm=26&gp=0.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 20px 40px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 9;
+  }
+
+  #login {
+    width: 300px;
+    /* margin: 60px auto; */
     background-image: url('https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2444703665,363140675&fm=26&gp=0.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -680,7 +748,7 @@
     font-size: 26px;
     line-height: 50px;
     font-weight: bold;
-    margin: 10px;
+    /* margin: 10px; */
     text-align: center;
   }
 
@@ -689,7 +757,7 @@
   }
 
   .login {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     font-size: 14px;
     line-height: 22px;
     color: #1ab2ff;
@@ -710,7 +778,7 @@
   }
 
   .code button {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     width: 140px;
     text-align: center;
   }

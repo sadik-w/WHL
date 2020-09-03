@@ -1,37 +1,37 @@
 <!--  -->
 <template>
-  <Col class="border">
-  <a @click="linkurl">
-    <slot></slot>
-  </a>
-  </Col>
+  <div>
+    <Password
+      style="background-image: url('https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1676039924,1631635399&fm=26&gp=0.jpg');
+      background-size:100% 100%;
+      background-repeat:no-repeat;
+      ">
+    </Password>
+  </div>
 </template>
 
 <script>
   //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
   //例如：import 《组件名称》 from '《组件路径》';
-
+  import password from '../../components/password.vue'
   export default {
     //import引入的组件需要注入到对象中才能使用
-    components: {},
+    components: {
+      Password: password,
+    },
     data() {
       //这里存放数据
       return {
+
       };
     },
-    props: {
-      to: String
-    },
     //监听属性 类似于data概念
-    computed: {
-    },
+    computed: {},
     //监控data中的数据变化
     watch: {},
     //方法集合
     methods: {
-      linkurl() {
-        this.$router.replace(this.to)
-      }
+
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -51,17 +51,5 @@
   }
 </script>
 <style>
-  .border:hover {
-    border-bottom: 3px solid #03a0e9;
-  }
 
-  a {
-    color: #515a6e;
-    font-size: 20px;
-    text-align: center;
-  }
-
-  a:hover {
-    color: #03a0e9;
-  }
 </style>
